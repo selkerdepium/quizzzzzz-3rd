@@ -7,15 +7,19 @@ class Result extends StatelessWidget {
   Result(this.resultScore, this.resetHandler);
 
   String get resultPhrase {
-    var resultText = 'You did it!';
-    if (resultScore <= 8) {
-      resultText = 'You are awesome and innocent!';
-    } else if (resultScore <= 12) {
-      resultText = 'Prety likeable!';
-    } else if (resultScore <= 16) {
-      resultText = 'You are strange!';
-    } else {
-      resultText = 'You are so bad!';
+    String resultText;
+    switch (resultScore) {
+      case <= 8:
+        resultText = 'You are awesome and innocent!';
+        break;
+      case <= 12:
+        resultText = 'Pretty likable!';
+        break;
+      case <= 16:
+        resultText = 'You are strange!';
+        break;
+      default:
+        resultText = 'You are so bad!';
     }
     return resultText;
   }
@@ -23,10 +27,18 @@ class Result extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: Column(children: <Widget>[
-      Text(resultPhrase,
-          style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold)),
-      ElevatedButton(child: Text('Restart Quiz!'), onPressed: resetHandler)
-    ]));
+      child: Column(
+        children: <Widget>[
+          Text(
+            resultPhrase,
+            style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+          ),
+          ElevatedButton(
+            child: Text('Restart Quiz!'),
+            onPressed: resetHandler,
+          ),
+        ],
+      ),
+    );
   }
 }
